@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import { FaChartLine } from 'react-icons/fa';
+import { View, Image, StyleSheet } from 'react-native';
+
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -17,6 +20,20 @@ function Navbar() {
       setButton(true);
     }
   };
+  const styles = StyleSheet.create({
+    container: {
+      // paddingTop: 50,
+      // backgroundColor:'white'
+    },
+    tinyLogo: {
+      width: 50,
+      height: 50,
+    },
+    logo: {
+      width: 150,
+      height: 58,
+    },
+  });
 
   useEffect(() => {
     showButton();
@@ -29,25 +46,25 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            TRVL
-            <i class='fab fa-typo3' />
+          <View style={styles.container}>
+          <Image
+            style={styles.logo}
+            source={
+              require('/home/haluk/react-website-v1/src/assets/images/kgt_logo.png')
+            }
+          />
+          </View>
+            {/* <i class='fab fa-typo3' /> */}
+            <span style={{padding:"5px"}}></span>
+            {/* <FaChartLine /> */}
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                Home
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link
-                to='/services'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Services
+              <Link to='/ramuygulamari' className='nav-links' onClick={closeMobileMenu}>
+                Kurumsal
               </Link>
             </li>
             <li className='nav-item'>
@@ -56,21 +73,39 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Products
+                Üniteler
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/sign-up'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Medya
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/sign-up'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                İletişim
               </Link>
             </li>
 
-            <li>
+            {/* <li>
               <Link
                 to='/sign-up'
                 className='nav-links-mobile'
-                onClick={closeMobileMenu}
+                onClick={console.log('hey')}
               >
-                Sign Up
+                BUY
               </Link>
-            </li>
+            </li> */}
           </ul>
-          {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
+          {/* {button && <Button buttonStyle='btn--outline'>BUY</Button>} */}
         </div>
       </nav>
     </>
