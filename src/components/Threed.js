@@ -2,8 +2,9 @@ import React,{ useEffect,useState } from "react";
 import {Tick,MTLModel} from 'react-3d-viewer';
 import {OBJModel} from 'react-3d-viewer'
 import './Threed.css'
-
+import { BarLoader,DoubleOrbit, SlidingPebbles } from 'react-spinner-animated';
 function Threed(model=0) {
+  const [load,setLoad] = useState(0)
 // const [rotation,setRotation] = useState({x:0,y:0})
 
   // useEffect(()=>{
@@ -27,11 +28,21 @@ function Threed(model=0) {
         mtl="model/machine.mtl"
         src="model/machine.obj"
      /> */}
+      {load ? null : <div className="loading"><DoubleOrbit text={"Loading..."}  
+    center={true} width={"150px"} height={"150px"}/></div>}
       <OBJModel 
       src= {typeof model !== 'object' ? model :'model/machine.obj'} //"model/machine.obj" 
       texPath=""
       width="800" height="400"  
-      position={{x:1000,y:-1000,z:-1500}} 
+      position={{x:1000,y:-1000,z:0}} 
+      onLoad={()=>{
+        setLoad(1)
+      }}
+      onProgress={xhr=>{
+        if (load === 0){
+          setLoad(0)
+        }
+      }}
       />
     </div>
   )

@@ -11,8 +11,9 @@ function Ramuygulamari1() {
   const productService = new ProductService();
 
   useEffect(() => {
-    console.log('hejs')
-    productService.getProductsSmall().then(data => console.log(data)); //setProducts(data)
+    const jsonData= require('../../data/products-small.json'); 
+    setProducts(jsonData['data'])
+    // productService.getProductsSmall().then(data => setProducts(data)); //setProducts(data)
 }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -24,10 +25,10 @@ function Ramuygulamari1() {
 
       <div className="card">
                 <DataTable value={products} responsiveLayout="scroll">
-                    <Column field="code" header="Code"></Column>
-                    <Column field="name" header="Name"></Column>
-                    <Column field="category" header="Category"></Column>
-                    <Column field="quantity" header="Quantity"></Column>
+                    <Column field="Malzeme" header="Malzeme"></Column>
+                    <Column field="Max Hız" header="Max Hız"></Column>
+                    <Column field="Max Hava Basıncı" header="Max Hava Basıncı"></Column>
+                    <Column field="Şase Sistemi" header="Şase Sistemi"></Column>
                 </DataTable>
       </div>
     </>
