@@ -23,7 +23,14 @@
   border: 1px solid var(--primary);
   transition: all 0.3s ease-out;
 }
-
+.btn--offer {
+  background-color: rgba(36, 36, 240, 0.644);
+  color: black;
+  padding: 8px 20px;
+  /* border: 1px solid  ; */
+  transition: all 0.3s ease-out;
+  border-radius: 7%;
+}
 .btn--medium {
   padding: 8px 20px;
   font-size: 18px;
@@ -41,3 +48,7 @@
   color: #242424;
   transition: 250ms;
 }
+.btn--offer:hover{
+  border: solid 1px;
+}
+

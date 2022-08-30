@@ -5,17 +5,23 @@ import { Column } from 'primereact/column';
 import { ProductService } from '../../service/ProductService';
 import '../../App.css';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
+import { Button } from 'primereact/button';
+import '../PrimeButtons.css';
+import { InputNumber } from 'primereact/inputnumber';
 
 function Ramuygulamari1() {
   const [products, setProducts] = useState([]);
+  const [price,setPrice] = useState(0);
   const productService = new ProductService();
-
+  
   useEffect(() => {
     const jsonData= require('../../data/products-small.json'); 
     setProducts(jsonData['data'])
     // productService.getProductsSmall().then(data => setProducts(data)); //setProducts(data)
 }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+  function handleClick(){
+    console.log(price)
+    }
   return (
     <> 
     <h2 className='ram1-margin'>T-RJU Jboks Ünitesi</h2>
@@ -30,6 +36,13 @@ function Ramuygulamari1() {
                     <Column field="Max Hava Basıncı" header="Max Hava Basıncı"></Column>
                     <Column field="Şase Sistemi" header="Şase Sistemi"></Column>
                 </DataTable>
+      </div>
+      <div className='offer'>
+        <div className='price'>
+          <span className="p-inputgroup-addon">$</span>
+          <InputNumber value={price} onChange={(e) => setPrice(e.value)}/>
+        </div>
+        <Button label="TEKLİF VER" icon="pi pi-check" iconPos="right" onClick={handleClick} />
       </div>
     </>
   )
